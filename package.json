@@ -1,0 +1,67 @@
+{
+  "name": "react-project-setup",
+  "version": "1.0.0",
+  "description": "An initial `React` project setup, with configured linting, formatting, testing, server starting, and building.",
+  "scripts": {
+    "test": "jest",
+    "lint": "xo --fix",
+    "format": "prettier --write ./**/*.{html,css,js,jsx,json,md}",
+    "start": "parcel index.html --open",
+    "build": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "Marcus Vinicius Monteiro de Souza",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "babel-jest": "^24.9.0",
+    "eslint-config-xo-react": "^0.20.0",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.3",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
+    "xo": "^0.25.3"
+  },
+  "xo": {
+    "prettier": true,
+    "extends": "xo-react",
+    "envs": [
+      "browser",
+      "jest"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup-tests-after-env.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./**/*.{html,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "./**/*.{js,jsx}": [
+      "xo --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
